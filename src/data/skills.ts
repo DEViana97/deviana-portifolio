@@ -6,7 +6,6 @@ import {
   FaGithub,
   FaHtml5,
   FaJs,
-  FaPython,
   FaReact,
 } from "react-icons/fa";
 import { SiNextdotjs, SiTailwindcss, SiTypescript, SiVercel } from "react-icons/si";

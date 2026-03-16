@@ -202,7 +202,15 @@ const CloseButton = styled.button`
   height: 2.4rem;
   border-radius: 0.75rem;
   border: 1px solid ${({ theme }) => theme.colors.border};
-  backgr;
+  background: transparent;
+  color: ${({ theme }) => theme.colors.heading};
+  cursor: pointer;
+`;
+
+const MobileNav = styled.nav`
+  display: flex;
+  flex-direction: column;
+  gap: 0;
   padding: 1rem;
 
   a {
@@ -220,14 +228,6 @@ const CloseButton = styled.button`
   a:hover {
     background: ${({ theme }) => theme.colors.surface};
     border-left-color: ${({ theme }) => theme.colors.primary};
-    color: ${({ theme }) => theme.colors.primary}
-
-  a {
-    color: ${({ theme }) => theme.colors.text};
-    padding: 0.75rem;
-    border-radius: 0.75rem;
-    background: ${({ theme }) => theme.gradients.card};
-    border: 1px solid ${({ theme }) => theme.colors.border};
-    font-weight: 600;
+    color: ${({ theme }) => theme.colors.primary};
   }
 `;
