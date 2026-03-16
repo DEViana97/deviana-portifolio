@@ -1,13 +1,13 @@
 "use client";
 
 import { AnimatePresence, motion } from "framer-motion";
-import Link from "next/link";
 import { useState } from "react";
 import { HiOutlineMoon, HiOutlineSun } from "react-icons/hi";
 import { IoClose, IoMenu } from "react-icons/io5";
 import styled from "styled-components";
 
 import { useThemeModeContext } from "@/components/Providers";
+import { useActiveSection } from "@/hooks/useActiveSection";
 
 const navItems = [
   { label: "Inicio", href: "#hero" },
@@ -21,6 +21,7 @@ const navItems = [
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const { mode, toggleMode } = useThemeModeContext();
+  const activeSection = useActiveSection();
 
   return (
     <Wrapper>
@@ -29,9 +30,13 @@ export function Navbar() {
 
         <DesktopNav>
           {navItems.map((item) => (
-            <a key={item.href} href={item.href}>
+            <NavLink
+              key={item.href}
+              href={item.href}
+              $isActive={activeSection === item.href.replace("#", "")}
+            >
               {item.label}
-            </a>
+            </NavLink>
           ))}
         </DesktopNav>
 
@@ -70,9 +75,14 @@ export function Navbar() {
 
               <MobileNav>
                 {navItems.map((item) => (
-                  <Link key={item.href} href={item.href} onClick={() => setIsOpen(false)}>
+                  <MobileNavLink
+                    key={item.href}
+                    href={item.href}
+                    $isActive={activeSection === item.href.replace("#", "")}
+                    onClick={() => setIsOpen(false)}
+                  >
                     {item.label}
-                  </Link>
+                  </MobileNavLink>
                 ))}
               </MobileNav>
             </MobileMenu>
@@ -112,16 +122,6 @@ const DesktopNav = styled.nav`
   display: none;
   align-items: center;
   gap: 1rem;
-
-  a {
-    color: ${({ theme }) => theme.colors.textMuted};
-    font-weight: 600;
-    transition: color 0.2s ease;
-  }
-
-  a:hover {
-    color: ${({ theme }) => theme.colors.primary};
-  }
 
   @media (min-width: 960px) {
     display: flex;
@@ -213,20 +213,51 @@ const MobileNav = styled.nav`
   flex-direction: column;
   gap: 0;
   padding: 1rem;
+`;
 
-  a {
-    color: ${({ theme }) => theme.colors.text};
-    padding: 0.85rem 1rem;
-    border-radius: 0.6rem;
-    background: transparent;
-    border: none;
-    border-left: 3px solid transparent;
-    font-weight: 600;
-    transition: all 0.2s ease;
-    display: block;
+const NavLink = styled.a<{ $isActive?: boolean }>`
+  color: ${({ $isActive, theme }) =>
+    $isActive ? theme.colors.primary : theme.colors.textMuted};
+  font-weight: ${({ $isActive }) => ($isActive ? 700 : 600)};
+  position: relative;
+  transition: color 0.2s ease;
+
+  ${({ $isActive, theme }) =>
+    $isActive &&
+    `
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: ${theme.colors.primary};
+      border-radius: 1px;
+    }
+  `}
+
+  &:hover {
+    color: ${({ theme }) => theme.colors.primary};
   }
+`;
 
-  a:hover {
+const MobileNavLink = styled.a<{ $isActive?: boolean }>`
+  padding: 0.85rem 1rem;
+  border-radius: 0.6rem;
+  background: ${({ $isActive, theme }) =>
+    $isActive ? theme.colors.surface : "transparent"};
+  border: none;
+  border-left: 3px solid
+    ${({ $isActive, theme }) =>
+      $isActive ? theme.colors.primary : "transparent"};
+  color: ${({ $isActive, theme }) =>
+    $isActive ? theme.colors.primary : theme.colors.text};
+  font-weight: ${({ $isActive }) => ($isActive ? 700 : 600)};
+  transition: all 0.2s ease;
+  display: block;
+
+  &:hover {
     background: ${({ theme }) => theme.colors.surface};
     border-left-color: ${({ theme }) => theme.colors.primary};
     color: ${({ theme }) => theme.colors.primary};
