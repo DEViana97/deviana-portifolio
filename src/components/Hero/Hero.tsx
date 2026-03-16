@@ -14,8 +14,8 @@ export function Hero() {
         <Kicker>Matheus Viana</Kicker>
         <h1>Analista de Sistemas e Desenvolvedor Front-end</h1>
         <p>
-          Atuo com React e Next.js na construcao de interfaces modernas, responsivas e orientadas
-          a negocio, com foco em componentizacao, performance e evolucao continua.
+          Atuo com React e Next.js na construção de interfaces modernas, responsivas e orientadas
+          a negocio, com foco em componentização, performance e evolução continua.
         </p>
 
         <Actions>
