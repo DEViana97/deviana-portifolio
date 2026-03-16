@@ -9,7 +9,7 @@ const STORAGE_KEY = "portfolio-theme";
 export function useThemeMode() {
   const [mode, setMode] = useState<ThemeMode>(() => {
     if (typeof window === "undefined") {
-      return "light";
+      return "dark";
     }
 
     const saved = window.localStorage.getItem(STORAGE_KEY) as ThemeMode | null;
@@ -17,8 +17,7 @@ export function useThemeMode() {
       return saved;
     }
 
-    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-    return prefersDark ? "dark" : "light";
+    return "dark";
   });
 
   useEffect(() => {
