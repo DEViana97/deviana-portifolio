@@ -8,16 +8,24 @@ export function useActiveSection() {
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setActiveSection(entry.target.id);
-          }
+        const visibleSections = entries.filter((entry) => entry.isIntersecting);
+        
+        if (visibleSections.length === 0) return;
+
+        // Pick the section closest to the top of the viewport
+        const activeEntry = visibleSections.reduce((closest, current) => {
+          return Math.abs(current.boundingClientRect.top) <
+            Math.abs(closest.boundingClientRect.top)
+            ? current
+            : closest;
         });
+
+        setActiveSection(activeEntry.target.id);
       },
       { threshold: 0.3 }
     );
 
-    const sections = document.querySelectorAll("section[id], main");
+    const sections = document.querySelectorAll("section[id]");
     sections.forEach((section) => {
       observer.observe(section);
     });
