@@ -14,7 +14,7 @@ export function About() {
         transition={{ duration: 0.5 }}
       >
         <PhotoWrap>
-          <Image src="/projects/profile-placeholder.svg" alt="Foto profissional" fill sizes="300px" />
+          <Image src="/projects/deviana.jpg" alt="Foto profissional" fill sizes="300px" />
         </PhotoWrap>
 
         <Text>
