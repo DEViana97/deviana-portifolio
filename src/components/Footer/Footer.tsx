@@ -8,14 +8,14 @@ export function Footer() {
     <Wrapper>
       <Container>
         <span>
-          <FaRegCopyright /> {new Date().getFullYear()} Deviana
+          <FaRegCopyright /> {new Date().getFullYear()} Matheus Viana
         </span>
 
         <Links>
-          <a href="https://github.com/seu-usuario" target="_blank" rel="noreferrer">
+          <a href="https://github.com/DEViana97" target="_blank" rel="noreferrer">
             <FaGithub /> GitHub
           </a>
-          <a href="https://linkedin.com/in/seu-usuario" target="_blank" rel="noreferrer">
+          <a href="https://linkedin.com/in/matheus-deviana" target="_blank" rel="noreferrer">
             <FaLinkedin /> LinkedIn
           </a>
         </Links>

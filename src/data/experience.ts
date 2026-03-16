@@ -7,24 +7,31 @@ export type ExperienceItem = {
 
 export const experienceItems: ExperienceItem[] = [
   {
-    title: "Frontend Developer",
-    organization: "Agencia PixelCraft",
-    period: "2023 - Atual",
+    title: "Desenvolvedor Front-end",
+    organization: "STB Tecnologias",
+    period: "05/2023 - Atualmente",
     description:
-      "Lideranca tecnica em interfaces React/Next.js com foco em acessibilidade, performance e design systems escalaveis.",
+      "Atuacao com Next.js no desenvolvimento de interfaces modernas e responsivas, traduzindo design e requisitos de negocio em componentes reutilizaveis e eficientes com React.",
   },
   {
-    title: "Bootcamp Full Stack",
-    organization: "Rocketseat",
-    period: "2022",
+    title: "Analise e Desenvolvimento de Sistemas",
+    organization: "Formacao Academica",
+    period: "2023 - 2025",
     description:
-      "Formacao intensiva com projetos praticos de frontend moderno, APIs e boas praticas de engenharia de software.",
+      "Formacao focada em desenvolvimento de software, engenharia de requisitos e fundamentos para construcao de produtos digitais.",
   },
   {
-    title: "Bacharelado em Sistemas",
-    organization: "Universidade Federal",
-    period: "2019 - 2023",
+    title: "Participacao em Comunidades",
+    organization: "Discord e Telegram",
+    period: "Ativo",
     description:
-      "Base academica em arquitetura de software, usabilidade e fundamentos de computacao aplicada a produtos digitais.",
+      "Interacao frequente com a comunidade de tecnologia, ajudando outros devs e trocando conhecimento sobre temas que domina.",
+  },
+  {
+    title: "Idioma",
+    organization: "Ingles Intermediario",
+    period: "Em evolucao",
+    description:
+      "Leitura tecnica e comunicacao para estudos, documentacao e colaboracao em contexto de desenvolvimento.",
   },
 ];

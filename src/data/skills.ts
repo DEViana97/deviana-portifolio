@@ -1,13 +1,15 @@
 import {
+  FaBootstrap,
   FaCss3Alt,
   FaFigma,
   FaGitAlt,
   FaGithub,
   FaHtml5,
   FaJs,
+  FaPython,
   FaReact,
 } from "react-icons/fa";
-import { SiNextdotjs, SiTypescript, SiVercel } from "react-icons/si";
+import { SiNextdotjs, SiTailwindcss, SiTypescript, SiVercel } from "react-icons/si";
 
 import type { IconType } from "react-icons";
 
@@ -17,7 +19,7 @@ export type Skill = {
 };
 
 export type SkillGroup = {
-  category: "Frontend" | "Ferramentas";
+  category: string;
   items: Skill[];
 };
 
@@ -31,6 +33,9 @@ export const skillGroups: SkillGroup[] = [
       { name: "TypeScript", icon: SiTypescript },
       { name: "React", icon: FaReact },
       { name: "Next.js", icon: SiNextdotjs },
+      { name: "Tailwind CSS", icon: SiTailwindcss },
+      { name: "Bootstrap", icon: FaBootstrap },
+      { name: "Python", icon: FaPython },
     ],
   },
   {
@@ -40,6 +45,8 @@ export const skillGroups: SkillGroup[] = [
       { name: "GitHub", icon: FaGithub },
       { name: "Figma", icon: FaFigma },
       { name: "Vercel", icon: SiVercel },
+      { name: "REST API", icon: FaGithub },
+      { name: "Scrum e Kanban", icon: FaGitAlt },
     ],
   },
 ];

@@ -17,13 +17,13 @@ const spaceGrotesk = Space_Grotesk({
 export const metadata: Metadata = {
   metadataBase: new URL("https://deviana-portifolio.vercel.app"),
   title: {
-    default: "Deviana | Frontend Developer",
-    template: "%s | Deviana",
+    default: "Matheus Viana | Front-end Developer",
+    template: "%s | Matheus Viana",
   },
   description:
     "Portfolio profissional de desenvolvedor frontend com Next.js, TypeScript e foco em UX, performance e design moderno.",
   openGraph: {
-    title: "Deviana | Frontend Developer",
+    title: "Matheus Viana | Front-end Developer",
     description:
       "Projetos, skills e experiencia em frontend moderno com React e Next.js.",
     type: "website",

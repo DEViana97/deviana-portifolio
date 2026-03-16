@@ -11,11 +11,11 @@ export function Hero() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.7, ease: "easeOut" }}
       >
-        <Kicker>Frontend Developer</Kicker>
-        <h1>Especialista em React e Next.js</h1>
+        <Kicker>Matheus Viana</Kicker>
+        <h1>Analista de Sistemas e Desenvolvedor Front-end</h1>
         <p>
-          Desenvolvimento interfaces escalaveis, acessiveis e com foco em resultado de negocio,
-          transformando ideias em experiencias digitais consistentes.
+          Atuo com React e Next.js na construcao de interfaces modernas, responsivas e orientadas
+          a negocio, com foco em componentizacao, performance e evolucao continua.
         </p>
 
         <Actions>

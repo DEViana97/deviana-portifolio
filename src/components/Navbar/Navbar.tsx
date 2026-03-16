@@ -25,7 +25,7 @@ export function Navbar() {
   return (
     <Wrapper>
       <Inner>
-        <Brand href="#hero">Deviana</Brand>
+        <Brand href="#hero">Matheus Viana</Brand>
 
         <DesktopNav>
           {navItems.map((item) => (

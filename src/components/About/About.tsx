@@ -20,14 +20,14 @@ export function About() {
         <Text>
           <h2>Sobre Mim</h2>
           <p>
-            Minha jornada em programacao comecou pela curiosidade em transformar interfaces comuns
-            em produtos que geram impacto real. Hoje atuo na construcao de experiencias frontend com
-            arquitetura limpa e colaboracao entre produto, design e engenharia.
+            Sempre gostei de tecnologia e sabia que queria construir minha carreira com
+            computadores. Quando conheci a programação, foi amor a primeira vista. Atualmente atuo
+            no front-end e transformo requisitos de negocio em interfaces modernas e responsivas.
           </p>
           <p>
-            Especializado em React, Next.js e TypeScript, tenho preferencia por stacks orientadas a
-            performance, acessibilidade e escalabilidade. Meu objetivo e liderar projetos digitais de
-            alto impacto, com qualidade tecnica e foco no usuario final.
+            Tenho experiencia com React.js, Next.js, JavaScript e TypeScript, utilizando boas
+            praticas de componentização e trabalho em equipe com Scrum e Kanban. Meu objetivo e ser
+            o melhor desenvolvedor que posso ser, sempre aberto a aprender novas stacks e desafios.
           </p>
         </Text>
       </Container>

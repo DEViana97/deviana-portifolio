@@ -49,13 +49,13 @@ export function Contact() {
 
           <ul>
             <li>
-              <MdEmail /> deviana@email.com
+              <MdEmail /> mateusviana97@gmail.com
             </li>
             <li>
-              <FaGithub /> github.com/seu-usuario
+              <FaGithub /> <a href="https://github.com/DEViana97">/DEViana97</a>
             </li>
             <li>
-              <FaLinkedin /> linkedin.com/in/seu-usuario
+              <FaLinkedin /> <a href="https://www.linkedin.com/in/matheus-deviana/">/matheus-deviana</a>
             </li>
           </ul>
         </Info>
@@ -128,6 +128,11 @@ const Info = styled.div`
     align-items: center;
     color: ${({ theme }) => theme.colors.text};
     font-weight: 600;
+
+    a:hover {
+      text-decoration: underline;
+      transition: all.3s;
+    }
   }
 `;
 
