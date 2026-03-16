@@ -31,7 +31,7 @@ export const metadata: Metadata = {
     url: "https://deviana-portifolio.vercel.app",
   },
   icons: {
-    icon: "/favicon.ico",
+    icon: "/favicon.png",
   },
 };
 
