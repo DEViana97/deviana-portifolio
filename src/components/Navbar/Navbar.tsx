@@ -250,7 +250,7 @@ const MobileNavLink = styled.a<{ $isActive?: boolean }>`
   border: none;
   border-left: 3px solid
     ${({ $isActive, theme }) =>
-      $isActive ? theme.colors.primary : "transparent"};
+    $isActive ? theme.colors.primary : "transparent"};
   color: ${({ $isActive, theme }) =>
     $isActive ? theme.colors.primary : theme.colors.text};
   font-weight: ${({ $isActive }) => ($isActive ? 700 : 600)};

@@ -6,34 +6,41 @@ export function useActiveSection() {
   const [activeSection, setActiveSection] = useState("hero");
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const visibleSections = entries.filter((entry) => entry.isIntersecting);
-        
-        if (visibleSections.length === 0) return;
+    const sections = Array.from(document.querySelectorAll<HTMLElement>("section[id]"));
 
-        // Pick the section closest to the top of the viewport
-        const activeEntry = visibleSections.reduce((closest, current) => {
-          return Math.abs(current.boundingClientRect.top) <
-            Math.abs(closest.boundingClientRect.top)
-            ? current
-            : closest;
-        });
+    if (sections.length === 0) return;
 
-        setActiveSection(activeEntry.target.id);
-      },
-      { threshold: 0.3 }
-    );
+    const getActiveByScroll = () => {
+      const headerOffset = 120;
+      const currentPosition = window.scrollY + headerOffset;
 
-    const sections = document.querySelectorAll("section[id]");
-    sections.forEach((section) => {
-      observer.observe(section);
-    });
+      let currentSection = sections[0].id;
+
+      for (const section of sections) {
+        if (section.offsetTop <= currentPosition) {
+          currentSection = section.id;
+        }
+      }
+
+      setActiveSection(currentSection);
+    };
+
+    const onHashChange = () => {
+      const hashId = window.location.hash.replace("#", "");
+      if (hashId) {
+        setActiveSection(hashId);
+      }
+    };
+
+    getActiveByScroll();
+    window.addEventListener("scroll", getActiveByScroll, { passive: true });
+    window.addEventListener("resize", getActiveByScroll);
+    window.addEventListener("hashchange", onHashChange);
 
     return () => {
-      sections.forEach((section) => {
-        observer.unobserve(section);
-      });
+      window.removeEventListener("scroll", getActiveByScroll);
+      window.removeEventListener("resize", getActiveByScroll);
+      window.removeEventListener("hashchange", onHashChange);
     };
   }, []);
 
