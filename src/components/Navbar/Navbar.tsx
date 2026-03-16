@@ -175,18 +175,26 @@ const AsideBackdrop = styled(motion.div)`
 const MobileMenu = styled(motion.aside)`
   width: min(80vw, 320px);
   height: 100%;
-  background: ${({ theme }) => theme.colors.surface};
-  border-left: 1px solid ${({ theme }) => theme.colors.border};
-  padding: 1rem;
+  background: ${({ theme }) => theme.gradients.card};
+  border-left: 2px solid ${({ theme }) => theme.colors.primary};
+  padding: 0;
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 0;
 `;
 
 const MobileHeader = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  padding: 1rem;
+  border-bottom: 2px solid ${({ theme }) => theme.colors.border};
+  background: ${({ theme }) => theme.colors.surface};
+
+  h3 {
+    font-size: 1.2rem;
+    margin: 0;
+  }
 `;
 
 const CloseButton = styled.button`
@@ -194,15 +202,25 @@ const CloseButton = styled.button`
   height: 2.4rem;
   border-radius: 0.75rem;
   border: 1px solid ${({ theme }) => theme.colors.border};
-  background: transparent;
-  color: ${({ theme }) => theme.colors.heading};
-  cursor: pointer;
-`;
+  backgr;
+  padding: 1rem;
 
-const MobileNav = styled.nav`
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
+  a {
+    color: ${({ theme }) => theme.colors.text};
+    padding: 0.85rem 1rem;
+    border-radius: 0.6rem;
+    background: transparent;
+    border: none;
+    border-left: 3px solid transparent;
+    font-weight: 600;
+    transition: all 0.2s ease;
+    display: block;
+  }
+
+  a:hover {
+    background: ${({ theme }) => theme.colors.surface};
+    border-left-color: ${({ theme }) => theme.colors.primary};
+    color: ${({ theme }) => theme.colors.primary}
 
   a {
     color: ${({ theme }) => theme.colors.text};
