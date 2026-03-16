@@ -10,14 +10,14 @@ export type Project = {
 
 export const projects: Project[] = [
   {
-    id: "ecommerce-dashboard",
-    name: "E-commerce Insight",
+    id: "devmovies",
+    name: "DEVMovies",
     description:
-      "Dashboard analitico para e-commerce com filtros em tempo real, visualizacoes interativas e monitoramento de conversao.",
-    technologies: ["Next.js", "TypeScript", "Recharts", "Styled Components"],
-    image: "/projects/project-analytics.svg",
-    demoUrl: "https://example.com/ecommerce-insight",
-    githubUrl: "https://github.com/seu-usuario/ecommerce-insight",
+      "Projeto para ajudar pessoas a descobrirem, organizarem e acompanharem filmes e séries em um só lugar, com foco em experiência fluida e informações relevantes para decidir o que assistir.",
+    technologies: ["Next.js", "TypeScript", "TMDb API", "Tailwind CSS", "Prisma"],
+    image: "/projects/devmovies.png",
+    demoUrl: "https://my-movies-wine.vercel.app/",
+    githubUrl: "https://github.com/DEViana97/my-movies",
   },
   {
     id: "task-flow",
