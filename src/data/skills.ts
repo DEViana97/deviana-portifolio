@@ -35,7 +35,6 @@ export const skillGroups: SkillGroup[] = [
       { name: "Next.js", icon: SiNextdotjs },
       { name: "Tailwind CSS", icon: SiTailwindcss },
       { name: "Bootstrap", icon: FaBootstrap },
-      { name: "Python", icon: FaPython },
     ],
   },
   {
