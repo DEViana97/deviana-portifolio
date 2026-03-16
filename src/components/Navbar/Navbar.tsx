@@ -166,10 +166,11 @@ const HamburgerButton = styled.button`
 const AsideBackdrop = styled(motion.div)`
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.45);
+  background: rgba(0, 0, 0, 0.65);
   z-index: 70;
   display: flex;
   justify-content: flex-end;
+  backdrop-filter: blur(4px);
 `;
 
 const MobileMenu = styled(motion.aside)`
