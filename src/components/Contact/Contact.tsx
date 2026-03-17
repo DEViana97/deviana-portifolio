@@ -52,10 +52,10 @@ export function Contact() {
               <MdEmail /> mateusviana97@gmail.com
             </li>
             <li>
-              <FaGithub /> <a href="https://github.com/DEViana97">/DEViana97</a>
+              <FaGithub /> <a href="https://github.com/DEViana97" target="_blank" rel="noopener noreferrer">/DEViana97</a>
             </li>
             <li>
-              <FaLinkedin /> <a href="https://www.linkedin.com/in/matheus-deviana/">/matheus-deviana</a>
+              <FaLinkedin /> <a href="https://www.linkedin.com/in/matheus-deviana/" target="_blank" rel="noopener noreferrer">/matheus-deviana</a>
             </li>
           </ul>
         </Info>
