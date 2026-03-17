@@ -14,20 +14,20 @@ export const projects: Project[] = [
     name: "DEVMovies",
     description:
       "Projeto para ajudar pessoas a descobrirem, organizarem e acompanharem filmes e séries em um só lugar, com foco em experiência fluida e informações relevantes para decidir o que assistir.",
-    technologies: ["Next.js", "TypeScript", "TMDb API", "Tailwind CSS", "Prisma"],
+    technologies: ["Next.js", "TypeScript", "TMDb API", "Tailwind CSS", "Prisma", "React Query"],
     image: "/projects/devmovies.png",
     demoUrl: "https://my-movies-wine.vercel.app/",
     githubUrl: "https://github.com/DEViana97/my-movies",
   },
   {
-    id: "task-flow",
-    name: "TaskFlow Pro",
+    id: "eCommerceInsight",
+    name: "E-commerce Insight",
     description:
-      "Aplicacao colaborativa para gestao de tarefas com drag and drop, notificacoes e automacoes para squads remotos.",
-    technologies: ["React", "TypeScript", "Framer Motion", "Axios"],
-    image: "/projects/project-taskflow.svg",
-    demoUrl: "https://example.com/taskflow-pro",
-    githubUrl: "https://github.com/seu-usuario/taskflow-pro",
+      "Uma plataforma de analytics para e-commerce com autenticação, controle de acesso por perfil e visualização de métricas de vendas em tempo real, pronta para deploy em cloud",
+    technologies: ["Next.js", "TypeScript", "Prisma", "Recharts", "Zustand", "Vercel", "React Query"],
+    image: "/projects/e-insight.png",
+    demoUrl: "https://ecommerce-insight.vercel.app/",
+    githubUrl: "https://github.com/DEViana97/ecommerce-insight",
   },
   {
     id: "fintech-landing",
