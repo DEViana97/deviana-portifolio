@@ -16,6 +16,30 @@ bun dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
+## Configurar envio de contato por e-mail
+
+1. Crie um arquivo `.env.local` na raiz do projeto.
+2. Copie as variaveis de `.env.example`.
+3. Preencha com os dados SMTP da sua conta de e-mail.
+
+Exemplo:
+
+```env
+SMTP_HOST=smtp.gmail.com
+SMTP_PORT=465
+SMTP_SECURE=true
+SMTP_USER=seu-email@gmail.com
+SMTP_PASS=sua-senha-de-app
+CONTACT_RECEIVER_EMAIL=seu-email@gmail.com
+CONTACT_SENDER_EMAIL=seu-email@gmail.com
+```
+
+Observacoes:
+
+- Se usar Gmail, gere uma App Password para `SMTP_PASS`.
+- `CONTACT_RECEIVER_EMAIL` define quem recebe as mensagens do formulario.
+- Se `CONTACT_RECEIVER_EMAIL` nao for definido, o sistema envia para `SMTP_USER`.
+
 You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
