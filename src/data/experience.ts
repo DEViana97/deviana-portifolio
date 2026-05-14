@@ -9,7 +9,7 @@ export const experienceItems: ExperienceItem[] = [
   {
     title: "Desenvolvedor Front-end",
     organization: "STB Tecnologias",
-    period: "05/2023 - Atualmente",
+    period: "05/2023 - 05/2026",
     description:
       "Atuacao com Next.js no desenvolvimento de interfaces modernas e responsivas, traduzindo design e requisitos de negocio em componentes reutilizaveis e eficientes com React.",
   },
