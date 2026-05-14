@@ -1,15 +1,17 @@
 "use client";
 
-import { FaGithub, FaLinkedin, FaRegCopyright } from "react-icons/fa";
+import { FaGithub, FaLinkedin } from "react-icons/fa";
 import styled from "styled-components";
 
 export function Footer() {
   return (
     <Wrapper>
       <Container>
-        <span>
-          <FaRegCopyright /> {new Date().getFullYear()} Matheus Viana
-        </span>
+        <Brand>Matheus Viana</Brand>
+
+        <Copyright>
+          © {new Date().getFullYear()} Matheus Viana. Built with precision.
+        </Copyright>
 
         <Links>
           <a href="https://github.com/DEViana97" target="_blank" rel="noreferrer">
@@ -25,38 +27,56 @@ export function Footer() {
 }
 
 const Wrapper = styled.footer`
-  border-top: 1px solid ${({ theme }) => theme.colors.border};
-  padding: 1.4rem 1.25rem;
+  background: ${({ theme }) => theme.colors.surfaceContainerLowest};
+  border-top: 1px solid ${({ theme }) => theme.colors.outlineVariant}1a;
+  padding: 3rem 1.5rem;
 `;
 
 const Container = styled.div`
-  max-width: 1140px;
+  max-width: 1280px;
   margin: 0 auto;
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: space-between;
   gap: 1rem;
-  flex-wrap: wrap;
+  text-align: center;
 
-  span {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    color: ${({ theme }) => theme.colors.textMuted};
-    font-weight: 600;
+  @media (min-width: 768px) {
+    flex-direction: row;
+    justify-content: space-between;
+    text-align: left;
   }
+`;
+
+const Brand = styled.span`
+  font-family: ${({ theme }) => theme.fonts.display};
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: ${({ theme }) => theme.colors.onSurface};
+`;
+
+const Copyright = styled.p`
+  font-family: ${({ theme }) => theme.fonts.mono};
+  font-size: 0.8rem;
+  color: ${({ theme }) => theme.colors.onSurfaceVariant};
 `;
 
 const Links = styled.div`
   display: flex;
   align-items: center;
-  gap: 0.8rem;
+  gap: 1.5rem;
 
   a {
+    font-family: ${({ theme }) => theme.fonts.mono};
+    font-size: 0.8rem;
     display: inline-flex;
     align-items: center;
-    gap: 0.35rem;
-    color: ${({ theme }) => theme.colors.primary};
-    font-weight: 700;
+    gap: 0.4rem;
+    color: ${({ theme }) => theme.colors.onSurfaceVariant};
+    transition: color 0.2s;
+
+    &:hover {
+      color: ${({ theme }) => theme.colors.secondary};
+    }
   }
 `;
