@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import { motion } from "framer-motion";
 import styled from "styled-components";
 
@@ -13,64 +12,72 @@ export function About() {
         viewport={{ once: true, amount: 0.2 }}
         transition={{ duration: 0.5 }}
       >
-        <PhotoWrap>
-          <Image src="/projects/deviana.jpg" alt="Foto profissional" fill sizes="300px" />
-        </PhotoWrap>
-
-        <Text>
+        <Left>
           <h2>Sobre Mim</h2>
+          <Divider />
+        </Left>
+
+        <Right>
           <p>
-            Sempre gostei de tecnologia e sabia que queria construir minha carreira com
-            computadores. Quando conheci a programação, foi amor a primeira vista. Atualmente atuo
-            no front-end e transformo requisitos de negocio em interfaces modernas e responsivas.
+            Com foco sólido em engenharia de software frontend, minha jornada é pautada pela
+            criação de aplicações que não apenas funcionam, mas encantam. Especialista no
+            ecossistema React, utilizo TypeScript para garantir robustez e Next.js para
+            otimização de SEO e performance.
           </p>
           <p>
-            Tenho experiencia com React.js, Next.js, JavaScript e TypeScript, utilizando boas
-            praticas de componentização e trabalho em equipe com Scrum e Kanban. Meu objetivo e ser
-            o melhor desenvolvedor que posso ser, sempre aberto a aprender novas stacks e desafios.
+            Acredito que o código deve ser tão limpo quanto a UI que ele renderiza. Minha
+            abordagem une a precisão matemática do desenvolvimento com a sensibilidade do UX
+            Design, resultando em produtos que resolvem problemas reais de negócio.
           </p>
-        </Text>
+        </Right>
       </Container>
     </Section>
   );
 }
 
 const Section = styled.section`
-  padding: 5.5rem 1.25rem;
+  padding: 5rem 1.5rem;
+  background: ${({ theme }) => theme.colors.surfaceContainerLow};
 `;
 
 const Container = styled(motion.div)`
-  max-width: 1140px;
+  max-width: 1280px;
   margin: 0 auto;
   display: grid;
-  gap: 1.4rem;
+  gap: 3rem;
 
-  @media (min-width: 900px) {
-    grid-template-columns: 290px 1fr;
-    align-items: center;
+  @media (min-width: 768px) {
+    grid-template-columns: 5fr 7fr;
+    align-items: start;
   }
 `;
 
-const PhotoWrap = styled.div`
-  position: relative;
-  border-radius: 1.4rem;
-  overflow: hidden;
-  min-height: 280px;
-  border: 1px solid ${({ theme }) => theme.colors.border};
-  box-shadow: ${({ theme }) => theme.shadows.card};
-`;
-
-const Text = styled.div`
+const Left = styled.div`
   h2 {
-    font-size: clamp(1.8rem, 3vw, 2.4rem);
-    margin-bottom: 1rem;
+    font-family: ${({ theme }) => theme.fonts.display};
+    font-size: clamp(1.8rem, 3vw, 2rem);
+    font-weight: 600;
+    color: ${({ theme }) => theme.colors.onSurface};
+    margin-bottom: 1.5rem;
   }
+`;
 
+const Divider = styled.div`
+  width: 5rem;
+  height: 4px;
+  background: ${({ theme }) => theme.colors.primary};
+  border-radius: 2px;
+`;
+
+const Right = styled.div`
   p {
-    color: ${({ theme }) => theme.colors.textMuted};
+    font-family: ${({ theme }) => theme.fonts.body};
+    font-size: 1.1rem;
+    line-height: 1.75;
+    color: ${({ theme }) => theme.colors.onSurfaceVariant};
   }
 
   p + p {
-    margin-top: 1rem;
+    margin-top: 1.25rem;
   }
 `;
