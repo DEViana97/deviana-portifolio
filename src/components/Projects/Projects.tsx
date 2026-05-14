@@ -52,12 +52,20 @@ export function Projects() {
                 <p>{project.description}</p>
 
                 <Links>
-                  <a href={project.demoUrl} target="_blank" rel="noreferrer">
-                    Ver Projeto <FaExternalLinkAlt size={12} />
-                  </a>
-                  <a href={project.githubUrl} target="_blank" rel="noreferrer">
-                    GitHub <FaGithub size={14} />
-                  </a>
+                  {project.articleUrl ? (
+                    <a href={project.articleUrl} target="_blank" rel="noreferrer">
+                      Ver Matéria <FaExternalLinkAlt size={12} />
+                    </a>
+                  ) : project.demoUrl ? (
+                    <a href={project.demoUrl} target="_blank" rel="noreferrer">
+                      Ver Projeto <FaExternalLinkAlt size={12} />
+                    </a>
+                  ) : null}
+                  {project.githubUrl ? (
+                    <a href={project.githubUrl} target="_blank" rel="noreferrer">
+                      GitHub <FaGithub size={14} />
+                    </a>
+                  ) : null}
                 </Links>
               </Body>
             </Card>
