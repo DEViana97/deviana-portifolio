@@ -1,101 +1,219 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Image from "next/image";
 import styled from "styled-components";
+
+import { glassCard } from "@/styles/globalStyles";
 
 export function Hero() {
   return (
     <Section id="hero">
-      <Content
-        initial={{ opacity: 0, y: 28 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.7, ease: "easeOut" }}
-      >
-        <Kicker>Matheus Viana</Kicker>
-        <h1>Analista de Sistemas e Desenvolvedor Front-end</h1>
-        <p>
-          Atuo com React e Next.js na construção de interfaces modernas, responsivas e orientadas
-          a negocio, com foco em componentização, performance e evolução continua.
-        </p>
+      <Inner>
+        <Left
+          initial={{ opacity: 0, y: 24 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
+        >
+          <Badge>Disponível para novos desafios</Badge>
 
-        <Actions>
-          <a href="#projects">Ver Projetos</a>
-          <a href="/cv-deviana.pdf" target="_blank" rel="noreferrer">
-            Download CV
-          </a>
-        </Actions>
-      </Content>
+          <h1>
+            Transformando Visão em{" "}
+            <Highlight>Código</Highlight>{" "}
+            de Alta Performance.
+          </h1>
+
+          <Subtitle>Frontend Developer | React &amp; Next.js Specialist</Subtitle>
+
+          <Bio>
+            Desenvolvo interfaces sofisticadas, resilientes e escaláveis. Foco total
+            em entregar experiências digitais onde a estética encontra a performance
+            técnica impecável.
+          </Bio>
+
+          <Actions>
+            <PrimaryBtn href="#projects">
+              Ver Projetos
+            </PrimaryBtn>
+            <GhostBtn href="/cv-deviana.pdf" target="_blank" rel="noreferrer">
+              Download CV
+            </GhostBtn>
+          </Actions>
+        </Left>
+
+        <Right
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.7, ease: "easeOut", delay: 0.15 }}
+        >
+          <Glow />
+          <PhotoCard>
+            <PhotoWrap>
+              <Image
+                src="/projects/deviana.jpg"
+                alt="Matheus Viana"
+                fill
+                sizes="(max-width: 768px) 80vw, 40vw"
+                priority
+              />
+            </PhotoWrap>
+          </PhotoCard>
+        </Right>
+      </Inner>
     </Section>
   );
 }
 
 const Section = styled.section`
-  min-height: calc(100vh - 72px);
-  background: ${({ theme }) => theme.gradients.hero};
-  display: grid;
-  place-items: center;
-  padding: 6rem 1.25rem 4rem;
+  min-height: 100vh;
+  padding: 7rem 1.5rem 5rem;
+  overflow: hidden;
+  position: relative;
 `;
 
-const Content = styled(motion.div)`
-  max-width: 860px;
-  text-align: center;
+const Inner = styled.div`
+  max-width: 1280px;
+  margin: 0 auto;
+  display: grid;
+  align-items: center;
+  gap: 3rem;
+
+  @media (min-width: 768px) {
+    grid-template-columns: 1fr 1fr;
+  }
+`;
+
+const Left = styled(motion.div)`
+  position: relative;
+  z-index: 1;
 
   h1 {
-    font-size: clamp(2.2rem, 5vw, 4.3rem);
+    font-family: ${({ theme }) => theme.fonts.display};
+    font-size: clamp(2.4rem, 5vw, 4rem);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+    color: ${({ theme }) => theme.colors.onSurface};
     margin-bottom: 1rem;
-  }
-
-  p {
-    color: ${({ theme }) => theme.colors.textMuted};
-    font-size: clamp(1rem, 2vw, 1.2rem);
-    max-width: 700px;
-    margin: 0 auto;
   }
 `;
 
-const Kicker = styled.span`
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4rem;
-  margin-bottom: 1rem;
-  padding: 0.42rem 0.9rem;
-  border-radius: 999px;
-  background: ${({ theme }) => theme.colors.primarySoft};
-  color: ${({ theme }) => theme.colors.primary};
-  font-weight: 700;
-  font-size: 0.88rem;
+const Badge = styled.span`
+  display: block;
+  font-family: ${({ theme }) => theme.fonts.mono};
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
-  letter-spacing: 0.06em;
+  color: ${({ theme }) => theme.colors.secondary};
+  margin-bottom: 1.25rem;
+`;
+
+const Highlight = styled.span`
+  color: ${({ theme }) => theme.colors.primary};
+  font-style: italic;
+`;
+
+const Subtitle = styled.p`
+  font-family: ${({ theme }) => theme.fonts.display};
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: ${({ theme }) => theme.colors.onSurfaceVariant};
+  margin-bottom: 1.25rem;
+`;
+
+const Bio = styled.p`
+  font-family: ${({ theme }) => theme.fonts.body};
+  font-size: 1.1rem;
+  line-height: 1.75;
+  color: ${({ theme }) => theme.colors.onSurfaceVariant};
+  max-width: 540px;
+  margin-bottom: 2.5rem;
 `;
 
 const Actions = styled.div`
-  margin-top: 2rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+`;
+
+const PrimaryBtn = styled.a`
+  padding: 1rem 2rem;
+  background: ${({ theme }) => theme.colors.primary};
+  color: ${({ theme }) => theme.colors.onPrimary};
+  font-family: ${({ theme }) => theme.fonts.display};
+  font-weight: 700;
+  border-radius: 0.75rem;
+  box-shadow: 0 0 40px -10px ${({ theme }) => theme.colors.primary}4d;
+  transition: transform 0.2s, opacity 0.2s;
+
+  &:hover {
+    transform: scale(1.02);
+    opacity: 0.9;
+  }
+`;
+
+const GhostBtn = styled.a`
+  padding: 1rem 2rem;
+  border: 1px solid ${({ theme }) => theme.colors.primary}66;
+  color: ${({ theme }) => theme.colors.primary};
+  font-family: ${({ theme }) => theme.fonts.display};
+  font-weight: 700;
+  border-radius: 0.75rem;
+  transition: background 0.2s;
+
+  &:hover {
+    background: ${({ theme }) => theme.colors.primary}1a;
+  }
+`;
+
+const Right = styled(motion.div)`
+  position: relative;
   display: flex;
   justify-content: center;
-  flex-wrap: wrap;
-  gap: 0.85rem;
+  align-items: center;
+`;
 
-  a {
-    padding: 0.82rem 1.2rem;
-    border-radius: 0.8rem;
-    border: 1px solid transparent;
-    font-weight: 700;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+const Glow = styled.div`
+  position: absolute;
+  width: 120%;
+  height: 120%;
+  background: ${({ theme }) => theme.colors.primary}1a;
+  border-radius: 50%;
+  filter: blur(80px);
+  z-index: 0;
+`;
+
+const PhotoCard = styled.div`
+  ${glassCard}
+  padding: 1rem;
+  border-radius: 1.5rem;
+  transform: rotate(3deg);
+  transition: transform 0.5s ease;
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 420px;
+
+  &:hover {
+    transform: rotate(0deg);
+  }
+`;
+
+const PhotoWrap = styled.div`
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1;
+  border-radius: 0.75rem;
+  overflow: hidden;
+
+  img {
+    object-fit: cover;
+    filter: grayscale(100%);
+    transition: filter 0.7s ease;
   }
 
-  a:first-child {
-    background: ${({ theme }) => theme.colors.primary};
-    color: #fff;
-  }
-
-  a:last-child {
-    border-color: ${({ theme }) => theme.colors.border};
-    background: ${({ theme }) => theme.colors.surface};
-  }
-
-  a:hover {
-    transform: translateY(-2px);
-    box-shadow: ${({ theme }) => theme.shadows.card};
+  &:hover img {
+    filter: grayscale(0%);
   }
 `;
