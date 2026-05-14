@@ -3,32 +3,43 @@
 import { motion } from "framer-motion";
 import styled from "styled-components";
 
+import { glassCard } from "@/styles/globalStyles";
 import { experienceItems } from "@/data/experience";
 
 export function Experience() {
   return (
     <Section id="experience">
       <Container>
-        <h2>Experiencia e Formacao</h2>
+        <Title>Jornada Profissional</Title>
 
         <Timeline>
-          {experienceItems.map((item, index) => (
-            <Card
-              key={item.title}
-              initial={{ opacity: 0, x: -16 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, amount: 0.3 }}
-              transition={{ delay: index * 0.08, duration: 0.4 }}
-            >
-              <Badge />
-              <div>
-                <h3>{item.title}</h3>
-                <strong>{item.organization}</strong>
-                <span>{item.period}</span>
-                <p>{item.description}</p>
-              </div>
-            </Card>
-          ))}
+          <CenterLine />
+
+          {experienceItems.map((item, index) => {
+            const isLeft = index % 2 === 0;
+            return (
+              <TimelineRow key={item.title} $isLeft={isLeft}>
+                <CardWrap
+                  $isLeft={isLeft}
+                  initial={{ opacity: 0, x: isLeft ? -20 : 20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true, amount: 0.3 }}
+                  transition={{ delay: index * 0.08, duration: 0.4 }}
+                >
+                  <Card $isLeft={isLeft}>
+                    <Period>{item.period}</Period>
+                    <h3>{item.title}</h3>
+                    <Organization>{item.organization}</Organization>
+                    <p>{item.description}</p>
+                  </Card>
+                </CardWrap>
+
+                <Dot />
+
+                <EmptySlot />
+              </TimelineRow>
+            );
+          })}
         </Timeline>
       </Container>
     </Section>
@@ -36,66 +47,129 @@ export function Experience() {
 }
 
 const Section = styled.section`
-  padding: 5.5rem 1.25rem;
+  padding: 5rem 1.5rem;
 `;
 
 const Container = styled.div`
-  max-width: 1140px;
+  max-width: 1280px;
   margin: 0 auto;
+`;
 
-  h2 {
-    font-size: clamp(1.8rem, 3vw, 2.4rem);
-    margin-bottom: 1.4rem;
-  }
+const Title = styled.h2`
+  font-family: ${({ theme }) => theme.fonts.display};
+  font-size: clamp(1.8rem, 3vw, 2rem);
+  font-weight: 600;
+  text-align: center;
+  color: ${({ theme }) => theme.colors.onSurface};
+  margin-bottom: 4rem;
 `;
 
 const Timeline = styled.div`
   position: relative;
-  display: grid;
-  gap: 0.9rem;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+`;
 
-  &::before {
-    content: "";
-    position: absolute;
-    left: 0.54rem;
-    top: 0;
-    width: 2px;
-    height: 100%;
-    background: ${({ theme }) => theme.colors.border};
+const CenterLine = styled.div`
+  display: none;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 1px;
+  height: 100%;
+  background: ${({ theme }) => theme.colors.outlineVariant}4d;
+
+  @media (min-width: 768px) {
+    display: block;
   }
 `;
 
-const Card = styled(motion.article)`
+const TimelineRow = styled.div<{ $isLeft: boolean }>`
   position: relative;
-  margin-left: 2rem;
-  border: 1px solid ${({ theme }) => theme.colors.border};
-  border-radius: 1rem;
-  padding: 1rem;
-  background: ${({ theme }) => theme.gradients.card};
-  box-shadow: ${({ theme }) => theme.shadows.card};
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 
-  h3 {
-    font-size: 1.1rem;
+  @media (min-width: 768px) {
+    flex-direction: ${({ $isLeft }) => ($isLeft ? "row" : "row-reverse")};
+    justify-content: space-between;
+    align-items: center;
+  }
+`;
+
+const CardWrap = styled(motion.div)<{ $isLeft: boolean }>`
+  width: 100%;
+
+  @media (min-width: 768px) {
+    width: 45%;
+  }
+`;
+
+const Card = styled.div<{ $isLeft: boolean }>`
+  ${glassCard}
+  padding: 1.5rem;
+  border-radius: 1rem;
+
+  @media (min-width: 768px) {
+    text-align: ${({ $isLeft }) => ($isLeft ? "right" : "left")};
   }
 
-  strong,
-  span {
-    display: block;
-    color: ${({ theme }) => theme.colors.textMuted};
+  h3 {
+    font-family: ${({ theme }) => theme.fonts.display};
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: ${({ theme }) => theme.colors.onSurface};
+    margin-bottom: 0.25rem;
   }
 
   p {
-    margin-top: 0.5rem;
-    color: ${({ theme }) => theme.colors.textMuted};
+    font-family: ${({ theme }) => theme.fonts.body};
+    font-size: 0.95rem;
+    color: ${({ theme }) => theme.colors.onSurfaceVariant};
+    line-height: 1.6;
+    margin-top: 0.75rem;
   }
 `;
 
-const Badge = styled.div`
-  width: 0.9rem;
-  height: 0.9rem;
-  border-radius: 50%;
-  background: ${({ theme }) => theme.colors.primary};
-  position: absolute;
-  left: -1.98rem;
-  top: 1.1rem;
+const Period = styled.span`
+  display: block;
+  font-family: ${({ theme }) => theme.fonts.mono};
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: ${({ theme }) => theme.colors.primary};
+  margin-bottom: 0.5rem;
+`;
+
+const Organization = styled.p`
+  font-family: ${({ theme }) => theme.fonts.body};
+  font-weight: 700;
+  color: ${({ theme }) => theme.colors.secondary} !important;
+  margin-top: 0 !important;
+`;
+
+const Dot = styled.div`
+  display: none;
+
+  @media (min-width: 768px) {
+    display: block;
+    width: 0.6rem;
+    height: 0.6rem;
+    border-radius: 50%;
+    background: ${({ theme }) => theme.colors.primary};
+    box-shadow: 0 0 0 4px ${({ theme }) => theme.colors.primary}33;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    flex-shrink: 0;
+  }
+`;
+
+const EmptySlot = styled.div`
+  display: none;
+
+  @media (min-width: 768px) {
+    display: block;
+    width: 45%;
+  }
 `;
