@@ -54,12 +54,20 @@ export function Navbar() {
             exit={{ opacity: 0 }}
             onClick={() => setIsOpen(false)}
           >
-            <MobileMenu
+            <motion.div
               initial={{ x: "100%" }}
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
               transition={{ type: "spring", stiffness: 280, damping: 30 }}
               onClick={(event) => event.stopPropagation()}
+              style={{
+                width: "min(80vw, 320px)",
+                height: "100%",
+                backgroundColor: "#131b2e",
+                borderLeft: "1px solid rgba(255,255,255,0.1)",
+                display: "flex",
+                flexDirection: "column",
+              }}
             >
               <MobileHeader>
                 <Brand href="#hero" onClick={() => setIsOpen(false)}>Matheus Viana</Brand>
@@ -83,7 +91,7 @@ export function Navbar() {
                   Currículo
                 </MobileResumeLink>
               </MobileNav>
-            </MobileMenu>
+            </motion.div>
           </AsideBackdrop>
         ) : null}
       </AnimatePresence>
@@ -181,14 +189,6 @@ const AsideBackdrop = styled(motion.div)`
   backdrop-filter: blur(4px);
 `;
 
-const MobileMenu = styled(motion.aside)`
-  width: min(80vw, 320px);
-  height: 100%;
-  background: ${({ theme }) => theme.colors.surfaceContainerLow};
-  border-left: 1px solid rgba(255, 255, 255, 0.1);
-  display: flex;
-  flex-direction: column;
-`;
 
 const MobileHeader = styled.div`
   display: flex;
@@ -216,6 +216,7 @@ const MobileNav = styled.nav`
   flex-direction: column;
   padding: 1.25rem;
   gap: 0.25rem;
+  background: ${({ theme }) => theme.colors.surfaceContainerLow};
 `;
 
 const NavLink = styled.a<{ $isActive?: boolean }>`
