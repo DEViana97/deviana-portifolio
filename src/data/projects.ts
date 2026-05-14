@@ -30,13 +30,13 @@ export const projects: Project[] = [
     githubUrl: "https://github.com/DEViana97/ecommerce-insight",
   },
   {
-    id: "fintech-landing",
-    name: "Fintech Landing",
+    id: "cidade-sem-buracos",
+    name: "Cidade Sem Buracos",
     description:
-      "Landing page de alta conversao para startup financeira, com SEO tecnico, performance A+ e componentes reutilizaveis.",
-    technologies: ["Next.js", "Zod", "React Hook Form", "Vercel"],
-    image: "/projects/project-fintech.svg",
-    demoUrl: "https://example.com/fintech-landing",
-    githubUrl: "https://github.com/seu-usuario/fintech-landing",
+      "A ideia é simples: um site onde as pessoas podem reportar buracos nas ruas, com localização e descrição. Esses dados ficam disponíveis para consulta pública e podem ser usados por órgãos municipais para priorizar reparos. O objetivo é criar uma comunidade engajada que ajude a melhorar a infraestrutura urbana, tornando as cidades mais seguras para todos.",
+    technologies: ["Next.js", "TypeScript", "React", "Recharts", "Leaflet", "Vercel", "Tailwind CSS", "Zod", "Prisma", "NextAuth", "Tanstack Query"],
+    image: "/projects/cidade-sem-buracos.png",
+    demoUrl: "https://cidade-sem-buracos.vercel.app/",
+    githubUrl: "https://github.com/deviana97/cidade-sem-buracos",
   },
 ];
