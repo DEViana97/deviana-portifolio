@@ -5,16 +5,22 @@ import { motion } from "framer-motion";
 import { FaExternalLinkAlt, FaGithub } from "react-icons/fa";
 import styled from "styled-components";
 
+import { glassCard } from "@/styles/globalStyles";
 import { projects } from "@/data/projects";
 
 export function Projects() {
   return (
     <Section id="projects">
       <Container>
-        <Title>
-          <h2>Projetos em Destaque</h2>
-          <p>Selecao de produtos que mostram estrategia, qualidade tecnica e impacto visual.</p>
-        </Title>
+        <Header>
+          <HeaderLeft>
+            <Eyebrow>Portfolio</Eyebrow>
+            <h2>Projetos em Destaque</h2>
+          </HeaderLeft>
+          <Subtitle>
+            Uma seleção de trabalhos que demonstram domínio técnico e foco na experiência do usuário.
+          </Subtitle>
+        </Header>
 
         <Grid>
           {projects.map((project, index) => (
@@ -22,9 +28,8 @@ export function Projects() {
               key={project.id}
               initial={{ opacity: 0, y: 18 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.25 }}
+              viewport={{ once: true, amount: 0.15 }}
               transition={{ delay: index * 0.08, duration: 0.4 }}
-              whileHover={{ y: -6 }}
             >
               <ImageWrap>
                 <Image
@@ -37,21 +42,21 @@ export function Projects() {
               </ImageWrap>
 
               <Body>
-                <h3>{project.name}</h3>
-                <p>{project.description}</p>
-
                 <Tags>
-                  {project.technologies.map((tech) => (
-                    <span key={tech}>{tech}</span>
+                  {project.technologies.slice(0, 3).map((tech) => (
+                    <Tag key={tech}>#{tech}</Tag>
                   ))}
                 </Tags>
 
+                <h3>{project.name}</h3>
+                <p>{project.description}</p>
+
                 <Links>
                   <a href={project.demoUrl} target="_blank" rel="noreferrer">
-                    <FaExternalLinkAlt /> Deploy
+                    Ver Projeto <FaExternalLinkAlt size={12} />
                   </a>
                   <a href={project.githubUrl} target="_blank" rel="noreferrer">
-                    <FaGithub /> GitHub
+                    GitHub <FaGithub size={14} />
                   </a>
                 </Links>
               </Body>
@@ -64,79 +69,136 @@ export function Projects() {
 }
 
 const Section = styled.section`
-  padding: 5.5rem 1.25rem;
+  padding: 5rem 1.5rem;
+  background: ${({ theme }) => theme.colors.surfaceContainerLow}80;
 `;
 
 const Container = styled.div`
-  max-width: 1140px;
+  max-width: 1280px;
   margin: 0 auto;
 `;
 
-const Title = styled.div`
-  max-width: 680px;
-  margin-bottom: 1.8rem;
+const Header = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 3rem;
 
+  @media (min-width: 768px) {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+`;
+
+const HeaderLeft = styled.div`
   h2 {
-    font-size: clamp(1.8rem, 3vw, 2.4rem);
-    margin-bottom: 0.6rem;
+    font-family: ${({ theme }) => theme.fonts.display};
+    font-size: clamp(1.8rem, 3vw, 2rem);
+    font-weight: 600;
+    color: ${({ theme }) => theme.colors.onSurface};
   }
+`;
 
-  p {
-    color: ${({ theme }) => theme.colors.textMuted};
-  }
+const Eyebrow = styled.span`
+  display: block;
+  font-family: ${({ theme }) => theme.fonts.mono};
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: ${({ theme }) => theme.colors.primary};
+  margin-bottom: 0.5rem;
+`;
+
+const Subtitle = styled.p`
+  font-family: ${({ theme }) => theme.fonts.body};
+  font-size: 1rem;
+  color: ${({ theme }) => theme.colors.onSurfaceVariant};
+  max-width: 24rem;
 `;
 
 const Grid = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 1rem;
+  gap: 1.5rem;
+
+  @media (min-width: 640px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (min-width: 1024px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
 `;
 
 const Card = styled(motion.article)`
-  border: 1px solid ${({ theme }) => theme.colors.border};
+  ${glassCard}
   border-radius: 1rem;
   overflow: hidden;
-  background: ${({ theme }) => theme.gradients.card};
-  box-shadow: ${({ theme }) => theme.shadows.card};
   display: flex;
   flex-direction: column;
+
+  &:hover img {
+    filter: grayscale(0%);
+    transform: scale(1.08);
+  }
 `;
 
 const ImageWrap = styled.div`
   position: relative;
   width: 100%;
-  aspect-ratio: 16 / 10;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+
+  img {
+    object-fit: cover;
+    filter: grayscale(100%);
+    transition: filter 0.7s ease, transform 0.7s ease;
+  }
 `;
 
 const Body = styled.div`
-  padding: 1rem;
+  padding: 1.5rem;
   display: flex;
   flex-direction: column;
   flex: 1;
 
   h3 {
-    font-size: 1.2rem;
+    font-family: ${({ theme }) => theme.fonts.display};
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: ${({ theme }) => theme.colors.onSurface};
+    margin-bottom: 0.5rem;
   }
 
   p {
-    color: ${({ theme }) => theme.colors.textMuted};
-    margin-top: 0.55rem;
+    font-family: ${({ theme }) => theme.fonts.body};
+    font-size: 0.95rem;
+    color: ${({ theme }) => theme.colors.onSurfaceVariant};
+    line-height: 1.6;
+    flex: 1;
   }
 `;
 
 const Tags = styled.div`
-  margin-top: 0.8rem;
   display: flex;
   flex-wrap: wrap;
-  gap: 0.45rem;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+`;
 
-  span {
-    border: 1px solid ${({ theme }) => theme.colors.border};
-    border-radius: 999px;
-    padding: 0.25rem 0.7rem;
-    font-size: 0.78rem;
-    font-weight: 700;
-    color: ${({ theme }) => theme.colors.textMuted};
+const Tag = styled.span`
+  font-family: ${({ theme }) => theme.fonts.mono};
+  font-size: 0.7rem;
+  font-weight: 500;
+  color: ${({ theme }) => theme.colors.primary};
+
+  &:nth-child(2) {
+    color: ${({ theme }) => theme.colors.secondary};
+  }
+
+  &:nth-child(3) {
+    color: ${({ theme }) => theme.colors.onSurfaceVariant};
   }
 `;
 
@@ -144,14 +206,28 @@ const Links = styled.div`
   margin-top: auto;
   padding-top: 1rem;
   display: flex;
-  gap: 0.75rem;
+  gap: 1.5rem;
 
   a {
-    font-size: 0.9rem;
-    font-weight: 700;
+    font-family: ${({ theme }) => theme.fonts.mono};
+    font-size: 0.8rem;
+    font-weight: 500;
     display: inline-flex;
     align-items: center;
-    gap: 0.45rem;
+    gap: 0.35rem;
     color: ${({ theme }) => theme.colors.primary};
+    transition: opacity 0.2s;
+
+    &:hover {
+      opacity: 0.75;
+    }
+
+    &:last-child {
+      color: ${({ theme }) => theme.colors.onSurfaceVariant};
+
+      &:hover {
+        color: ${({ theme }) => theme.colors.onSurface};
+      }
+    }
   }
 `;
