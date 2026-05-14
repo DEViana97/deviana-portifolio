@@ -98,6 +98,8 @@ const Card = styled(motion.article)`
   overflow: hidden;
   background: ${({ theme }) => theme.gradients.card};
   box-shadow: ${({ theme }) => theme.shadows.card};
+  display: flex;
+  flex-direction: column;
 `;
 
 const ImageWrap = styled.div`
@@ -108,6 +110,9 @@ const ImageWrap = styled.div`
 
 const Body = styled.div`
   padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
 
   h3 {
     font-size: 1.2rem;
@@ -136,7 +141,8 @@ const Tags = styled.div`
 `;
 
 const Links = styled.div`
-  margin-top: 1rem;
+  margin-top: auto;
+  padding-top: 1rem;
   display: flex;
   gap: 0.75rem;
 
