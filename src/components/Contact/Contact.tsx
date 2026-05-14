@@ -6,13 +6,14 @@ import { motion } from "framer-motion";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
-import { MdEmail } from "react-icons/md";
 import styled from "styled-components";
 import { z } from "zod";
 
+import { glassCard } from "@/styles/globalStyles";
+
 const schema = z.object({
   name: z.string().min(2, "Informe seu nome."),
-  email: z.email("Informe um email valido."),
+  email: z.email("Informe um email válido."),
   message: z.string().min(10, "Sua mensagem precisa ter ao menos 10 caracteres."),
 });
 
@@ -43,157 +44,287 @@ export function Contact() {
   return (
     <Section id="contact">
       <Container>
-        <Info>
-          <h2>Contato</h2>
-          <p>Vamos conversar sobre seu proximo projeto ou oportunidade frontend.</p>
+        <Info
+          initial={{ opacity: 0, x: -20 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.5 }}
+        >
+          <h2>Vamos trabalhar juntos?</h2>
+          <p>
+            Estou sempre aberto a discutir novos projetos, parcerias criativas ou
+            oportunidades em times de alto nível.
+          </p>
 
-          <ul>
-            <li>
-              <MdEmail /> mateusviana97@gmail.com
-            </li>
-            <li>
-              <FaGithub /> <a href="https://github.com/DEViana97" target="_blank" rel="noopener noreferrer">/DEViana97</a>
-            </li>
-            <li>
-              <FaLinkedin /> <a href="https://www.linkedin.com/in/matheus-deviana/" target="_blank" rel="noopener noreferrer">/matheus-deviana</a>
-            </li>
-          </ul>
+          <ContactItems>
+            <ContactItem>
+              <IconBubble $color="primary">
+                <span>mail</span>
+              </IconBubble>
+              <div>
+                <Label>Email</Label>
+                <Value>mateusviana97@gmail.com</Value>
+              </div>
+            </ContactItem>
+
+            <ContactItem>
+              <IconBubble $color="secondary">
+                <span>location_on</span>
+              </IconBubble>
+              <div>
+                <Label>Localização</Label>
+                <Value>Brasil (Remoto)</Value>
+              </div>
+            </ContactItem>
+          </ContactItems>
+
+          <SocialLinks>
+            <SocialBtn
+              href="https://github.com/DEViana97"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="GitHub"
+            >
+              <FaGithub size={18} />
+            </SocialBtn>
+            <SocialBtn
+              href="https://www.linkedin.com/in/matheus-deviana/"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="LinkedIn"
+            >
+              <FaLinkedin size={18} />
+            </SocialBtn>
+          </SocialLinks>
         </Info>
 
-        <Form as={motion.form} onSubmit={handleSubmit(onSubmit)}>
-          <label htmlFor="name">Nome</label>
-          <input id="name" placeholder="Seu nome" {...register("name")} />
-          {errors.name ? <ErrorText>{errors.name.message}</ErrorText> : null}
+        <FormCard
+          as={motion.form}
+          onSubmit={handleSubmit(onSubmit)}
+          initial={{ opacity: 0, x: 20 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.5, delay: 0.1 }}
+        >
+          <Field>
+            <label htmlFor="name">Nome Completo</label>
+            <input id="name" placeholder="Seu nome..." {...register("name")} />
+            {errors.name ? <ErrorText>{errors.name.message}</ErrorText> : null}
+          </Field>
 
-          <label htmlFor="email">Email</label>
-          <input id="email" placeholder="seu@email.com" {...register("email")} />
-          {errors.email ? <ErrorText>{errors.email.message}</ErrorText> : null}
+          <Field>
+            <label htmlFor="email">Seu Email</label>
+            <input id="email" placeholder="email@exemplo.com" {...register("email")} />
+            {errors.email ? <ErrorText>{errors.email.message}</ErrorText> : null}
+          </Field>
 
-          <label htmlFor="message">Mensagem</label>
-          <textarea id="message" rows={5} placeholder="Como posso ajudar?" {...register("message")} />
-          {errors.message ? <ErrorText>{errors.message.message}</ErrorText> : null}
+          <Field>
+            <label htmlFor="message">Sua Mensagem</label>
+            <textarea id="message" rows={4} placeholder="Fale sobre seu projeto..." {...register("message")} />
+            {errors.message ? <ErrorText>{errors.message.message}</ErrorText> : null}
+          </Field>
 
-          <button type="submit" disabled={isSubmitting}>
-            {isSubmitting ? "Enviando..." : "Enviar mensagem"}
-          </button>
+          <SubmitButton type="submit" disabled={isSubmitting}>
+            {isSubmitting ? "Enviando..." : "Enviar Mensagem"}
+          </SubmitButton>
 
           {responseState === "success" ? (
             <StateText $state="success">Mensagem enviada com sucesso.</StateText>
           ) : null}
           {responseState === "error" ? (
-            <StateText $state="error">Nao foi possivel enviar agora. Tente novamente.</StateText>
+            <StateText $state="error">Não foi possível enviar agora. Tente novamente.</StateText>
           ) : null}
-        </Form>
+        </FormCard>
       </Container>
     </Section>
   );
 }
 
 const Section = styled.section`
-  padding: 5.5rem 1.25rem;
+  padding: 5rem 1.5rem;
+  background: ${({ theme }) => theme.colors.surfaceContainerLow};
 `;
 
 const Container = styled.div`
-  max-width: 1140px;
+  max-width: 1280px;
   margin: 0 auto;
   display: grid;
-  gap: 1.1rem;
+  gap: 3rem;
 
-  @media (min-width: 960px) {
-    grid-template-columns: 0.9fr 1.1fr;
-    align-items: flex-start;
+  @media (min-width: 768px) {
+    grid-template-columns: 1fr 1fr;
+    align-items: start;
   }
 `;
 
-const Info = styled.div`
+const Info = styled(motion.div)`
   h2 {
-    font-size: clamp(1.8rem, 3vw, 2.4rem);
-  }
-
-  p {
-    margin-top: 0.6rem;
-    color: ${({ theme }) => theme.colors.textMuted};
-  }
-
-  ul {
-    list-style: none;
-    margin-top: 1rem;
-    display: grid;
-    gap: 0.6rem;
-  }
-
-  li {
-    display: inline-flex;
-    gap: 0.6rem;
-    align-items: center;
-    color: ${({ theme }) => theme.colors.text};
+    font-family: ${({ theme }) => theme.fonts.display};
+    font-size: clamp(1.8rem, 3vw, 2rem);
     font-weight: 600;
+    color: ${({ theme }) => theme.colors.onSurface};
+    margin-bottom: 1rem;
+  }
 
-    a:hover {
-      text-decoration: underline;
-      transition: all.3s;
-    }
+  > p {
+    font-family: ${({ theme }) => theme.fonts.body};
+    font-size: 1.1rem;
+    line-height: 1.75;
+    color: ${({ theme }) => theme.colors.onSurfaceVariant};
+    margin-bottom: 2.5rem;
   }
 `;
 
-const Form = styled.form`
-  border: 1px solid ${({ theme }) => theme.colors.border};
+const ContactItems = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+`;
+
+const ContactItem = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+`;
+
+const IconBubble = styled.div<{ $color: "primary" | "secondary" }>`
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  background: ${({ $color, theme }) => theme.colors[$color]}1a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+
+  span {
+    font-family: "Material Symbols Outlined", sans-serif;
+    font-size: 1.25rem;
+    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    color: ${({ $color, theme }) => theme.colors[$color]};
+  }
+`;
+
+const Label = styled.p`
+  font-family: ${({ theme }) => theme.fonts.mono};
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: ${({ theme }) => theme.colors.onSurfaceVariant};
+`;
+
+const Value = styled.p`
+  font-family: ${({ theme }) => theme.fonts.body};
+  font-size: 1rem;
+  font-weight: 700;
+  color: ${({ theme }) => theme.colors.onSurface};
+`;
+
+const SocialLinks = styled.div`
+  display: flex;
+  gap: 1rem;
+  margin-top: 2.5rem;
+`;
+
+const SocialBtn = styled.a`
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 0.5rem;
+  border: 1px solid ${({ theme }) => theme.colors.outlineVariant}4d;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: ${({ theme }) => theme.colors.onSurfaceVariant};
+  transition: background 0.2s, color 0.2s;
+
+  &:hover {
+    background: ${({ theme }) => theme.colors.primary};
+    color: ${({ theme }) => theme.colors.onPrimary};
+    border-color: transparent;
+  }
+`;
+
+const FormCard = styled.form`
+  ${glassCard}
+  padding: 1.5rem;
   border-radius: 1rem;
-  background: ${({ theme }) => theme.gradients.card};
-  box-shadow: ${({ theme }) => theme.shadows.card};
-  padding: 1.1rem;
-  display: grid;
-  gap: 0.45rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+
+  @media (min-width: 768px) {
+    padding: 2rem;
+  }
+`;
+
+const Field = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
 
   label {
-    margin-top: 0.55rem;
-    font-size: 0.86rem;
-    font-weight: 700;
-    color: ${({ theme }) => theme.colors.textMuted};
+    font-family: ${({ theme }) => theme.fonts.mono};
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: ${({ theme }) => theme.colors.onSurface};
   }
 
   input,
   textarea {
     width: 100%;
-    border: 1px solid ${({ theme }) => theme.colors.border};
-    border-radius: 0.65rem;
     background: ${({ theme }) => theme.colors.surface};
-    color: ${({ theme }) => theme.colors.text};
-    font: inherit;
-    padding: 0.75rem;
+    border: 1px solid ${({ theme }) => theme.colors.outlineVariant}4d;
+    border-radius: 0.75rem;
+    color: ${({ theme }) => theme.colors.onSurface};
+    font-family: ${({ theme }) => theme.fonts.body};
+    font-size: 1rem;
+    padding: 0.75rem 1rem;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    resize: none;
+
+    &::placeholder {
+      color: ${({ theme }) => theme.colors.outline};
+    }
+
+    &:focus {
+      outline: none;
+      border-color: ${({ theme }) => theme.colors.primary};
+      box-shadow: 0 0 0 2px ${({ theme }) => theme.colors.primary}33;
+    }
+  }
+`;
+
+const SubmitButton = styled.button`
+  padding: 1rem;
+  background: ${({ theme }) => theme.colors.primary};
+  color: ${({ theme }) => theme.colors.onPrimary};
+  font-family: ${({ theme }) => theme.fonts.display};
+  font-weight: 700;
+  font-size: 1rem;
+  border: none;
+  border-radius: 0.75rem;
+  cursor: pointer;
+  transition: opacity 0.2s;
+
+  &:hover {
+    opacity: 0.9;
   }
 
-  input:focus,
-  textarea:focus {
-    outline: none;
-    box-shadow: ${({ theme }) => theme.shadows.focus};
-    border-color: ${({ theme }) => theme.colors.primary};
-  }
-
-  button {
-    margin-top: 0.75rem;
-    border: 0;
-    background: ${({ theme }) => theme.colors.primary};
-    color: #fff;
-    font-weight: 700;
-    border-radius: 0.7rem;
-    padding: 0.78rem;
-    cursor: pointer;
-  }
-
-  button:disabled {
-    opacity: 0.8;
+  &:disabled {
+    opacity: 0.7;
     cursor: wait;
   }
 `;
 
 const ErrorText = styled.small`
-  color: ${({ theme }) => theme.colors.danger};
-  font-weight: 600;
+  font-family: ${({ theme }) => theme.fonts.mono};
+  font-size: 0.75rem;
+  color: ${({ theme }) => theme.colors.error};
 `;
 
 const StateText = styled.small<{ $state: "success" | "error" }>`
-  color: ${({ theme, $state }) =>
-    $state === "success" ? theme.colors.success : theme.colors.danger};
-  font-weight: 700;
+  font-family: ${({ theme }) => theme.fonts.mono};
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: ${({ $state, theme }) =>
+    $state === "success" ? theme.colors.secondary : theme.colors.error};
 `;
