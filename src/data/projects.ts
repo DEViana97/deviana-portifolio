@@ -41,6 +41,16 @@ export const projects: Project[] = [
     githubUrl: "https://github.com/deviana97/cidade-sem-buracos",
   },
   {
+    id: "citydesk",
+    name: "CityDesk — Dashboard SaaS para Gestão de Chamados Urbanos",
+    description:
+      "Dashboard SaaS voltado para prefeituras e empresas de facilities. Permite que analistas monitorem, filtrem e respondam ocorrências reportadas por cidadãos — buracos, iluminação, lixo, etc. — com mapa interativo, histórico de status e sistema de comentários internos.",
+    technologies: ["Next.js", "TypeScript", "PostgreSQL", "Prisma", "NextAuth", "Tanstack Query", "Recharts", "Leaflet", "Tailwind CSS"],
+    image: "/projects/chamados-da-cidade.png",
+    demoUrl: "https://chamados-da-cidade.vercel.app/",
+    githubUrl: "https://github.com/DEViana97/chamados-da-cidade-",
+  },
+  {
     id: "ecovigia",
     name: "EcovigIA — Fiscalização Urbana com IA | Prefeitura de Fortaleza",
     description:
