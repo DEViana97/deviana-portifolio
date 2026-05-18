@@ -42,7 +42,7 @@ export const projects: Project[] = [
   },
   {
     id: "citydesk",
-    name: "CityDesk — Dashboard SaaS para Gestão de Chamados Urbanos",
+    name: "Chamados da Cidade — Dashboard SaaS para Gestão de Chamados Urbanos",
     description:
       "Dashboard SaaS voltado para prefeituras e empresas de facilities. Permite que analistas monitorem, filtrem e respondam ocorrências reportadas por cidadãos — buracos, iluminação, lixo, etc. — com mapa interativo, histórico de status e sistema de comentários internos.",
     technologies: ["Next.js", "TypeScript", "PostgreSQL", "Prisma", "NextAuth", "Tanstack Query", "Recharts", "Leaflet", "Tailwind CSS"],
