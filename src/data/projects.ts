@@ -11,6 +11,24 @@ export type Project = {
 
 export const projects: Project[] = [
   {
+    id: "ecovigia",
+    name: "EcovigIA — Fiscalização Urbana com IA | Prefeitura de Fortaleza",
+    description:
+      "Colaborei no desenvolvimento do Eco VigIA, sistema que utiliza inteligência artificial e câmeras de monitoramento para identificar e multar cidadãos e empresas que descartam lixo em locais proibidos em Fortaleza. O projeto conta com reconhecimento facial e de placas de veículos, e integra a futura Central de Monitoramento da Prefeitura, com previsão de operação em 2026.",
+    technologies: ["Next.js", "TypeScript", "React", "React Charts 2", "Leaflet", "Styled Components", "Tanstack Query"],
+    image: "/projects/ecovigia.png",
+    articleUrl: "https://diariodonordeste.verdesmares.com.br/ceara/fortaleza-vai-usar-ia-para-identificar-e-multar-quem-jogar-lixo-em-locais-proibidos-1.3720294",
+  },
+  {
+    id: "parada-segura",
+    name: "Parada Segura — Dashboard de Monitoramento Inteligente | Prefeitura de Fortaleza",
+    description:
+      "Dashboard de monitoramento e gestão operacional para o programa Parada Segura da Prefeitura de Fortaleza, que moderniza pontos de ônibus com wi-fi, videomonitoramento e painéis de previsão em tempo real (41+ abrigos em 29 bairros). A plataforma centraliza em tempo real todos os eventos dos abrigos, exibe feeds das câmeras de monitoramento, oferece mapa geoespacial de status de cada ponto, painéis analíticos com indicadores de desempenho e geração de relatórios operacionais para a equipe gestora.",
+    technologies: ["Next.js", "TypeScript", "Leaflet", "Recharts", "Tanstack Query", "Styled Components"],
+    image: "/projects/parada-segura.jpg",
+    articleUrl: "https://www.fortaleza.ce.gov.br/noticias/parada-segura-fortaleza-ja-conta-com-abrigos-de-onibus-wi-fi-e-paineis-de-previsao"
+  },
+  {
     id: "devmovies",
     name: "DEVMovies",
     description:
@@ -49,14 +67,5 @@ export const projects: Project[] = [
     image: "/projects/chamados-da-cidade.png",
     demoUrl: "https://chamados-da-cidade.vercel.app/",
     githubUrl: "https://github.com/DEViana97/chamados-da-cidade-",
-  },
-  {
-    id: "ecovigia",
-    name: "EcovigIA — Fiscalização Urbana com IA | Prefeitura de Fortaleza",
-    description:
-      "Colaborei no desenvolvimento do Eco VigIA, sistema que utiliza inteligência artificial e câmeras de monitoramento para identificar e multar cidadãos e empresas que descartam lixo em locais proibidos em Fortaleza. O projeto conta com reconhecimento facial e de placas de veículos, e integra a futura Central de Monitoramento da Prefeitura, com previsão de operação em 2026.",
-    technologies: ["Next.js", "TypeScript", "React", "React Charts 2", "Leaflet", "Styled Components", "Tanstack Query"],
-    image: "/projects/ecovigia.png",
-    articleUrl: "https://diariodonordeste.verdesmares.com.br/ceara/fortaleza-vai-usar-ia-para-identificar-e-multar-quem-jogar-lixo-em-locais-proibidos-1.3720294",
   }
 ];
